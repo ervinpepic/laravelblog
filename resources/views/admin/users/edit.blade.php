@@ -52,11 +52,24 @@
             </div>
 
             <div class="form-group">
+
                 {!! Form::submit('Update user data', ['class'=>'btn btn-primary']) !!}
+
+
+                {!! Form::close() !!}
+
+
+                {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id], 'class'=>'pull-right']) !!}
+
+
+                {!! Form::submit('Delete user', ['class'=>'btn btn-danger']) !!}
+
             </div>
 
             {!! Form::close() !!}
+
         </div>
+
     </div>
 
     <div class="row col-sm-6">
