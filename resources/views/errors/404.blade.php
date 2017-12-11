@@ -1,1 +1,9 @@
-<h1>Not Found</h1>
+@extends('layouts.app')
+
+
+
+@section('content')
+
+    <h1 class="text-center">This page does not exists.</h1>
+
+    @stop
