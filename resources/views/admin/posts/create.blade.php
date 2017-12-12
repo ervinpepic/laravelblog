@@ -5,7 +5,7 @@
 @section('content')
 
     <h1>Post Create</h1>
-    <div class="ro">
+    <div class="row">
         {!! Form::open(['method'=>'POST', 'action'=> 'AdminPostsController@store', 'files'=>true]) !!}
 
         <div class="form-group">
