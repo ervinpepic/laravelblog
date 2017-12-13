@@ -31,13 +31,16 @@ Route::group(['middleware'=>'admin'], function (){
     Route::get('/admin', function (){
 
         return view('admin.index');
+
         });
     Route::resource('admin/posts', 'AdminPostsController');
-
     Route::resource('admin/categories', 'AdminCategoriesController');
-
     Route::resource('admin/media', 'AdminMediaController');
 
+//Comments
+
+    Route::resource('admin/comments', 'PostCommentsController');
+    Route::resource('admin/comment/replies', 'CommentRepliesController');
 
 });
 
