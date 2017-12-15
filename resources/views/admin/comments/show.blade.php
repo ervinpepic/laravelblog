@@ -5,8 +5,9 @@
 @section('content')
 
     <h1 class="lead">Comments</h1>
+@if($comments)
 
-    @if(count($comments) > 0)
+
 
         <table class="table">
             <thead>
@@ -76,10 +77,10 @@
             </tbody>
         </table>
 
-    @else
 
+    @else
         <h1 class="text-center">No comments</h1>
 
-    @endif
+@endif
 
 @endsection
