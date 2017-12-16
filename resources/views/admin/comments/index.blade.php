@@ -26,7 +26,7 @@
                 <tr>
                     <td>{{$comment->id}}</td>
                     <td>{{$comment->author}}</td>
-                    <td>{{$comment->body}}</td>
+                    <td>{{str_limit($comment->body, 55)}}</td>
                     <td><a href="{{route('home.post', $comment->post->id)}}">View in post</a></td>
                     <td>
 
