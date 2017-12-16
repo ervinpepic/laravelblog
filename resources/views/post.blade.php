@@ -38,21 +38,29 @@
 
 
 
-    {{--<blockquote class="blockquote">--}}
-        {{--<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>--}}
-        {{--<footer class="blockquote-footer">Someone famous in--}}
-            {{--<cite title="Source Title">Source Title</cite>--}}
-        {{--</footer>--}}
-    {{--</blockquote>--}}
+    <blockquote class="blockquote">
+    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+    <footer class="blockquote-footer">Someone famous in
+    <cite title="Source Title">Source Title</cite>
+    </footer>
+    </blockquote>
 
-    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam--}}
-        {{--sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>--}}
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam
+    sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
 
-    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur--}}
-        {{--ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui,--}}
-        {{--necessitatibus, est!</p>--}}
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur
+    ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui,
+    necessitatibus, est!</p>
 
     <hr>
+
+
+
+
+
+
+
+
 
     <!-- Comments Form -->
     @if(Auth::check())
@@ -83,53 +91,59 @@
         </div>
     @endif
 
+
     @if(count($comments) > 0)
 
         @foreach($comments as $comment)
-            <!-- Single Comment -->
-            <div class="media mb-4">
-                <img height="64" width="64" class="d-flex mr-3 rounded-circle" src="{{$comment->photo}}" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">{{$comment->author}}</h5>
-                    {{$comment->body}}
-                </div>
-            </div>
+
+    <div class="media">
+        <a class="pull-left" href="#">
+            <img height="64" width="64" class="media-object" src="{{$comment->photo}}" alt="">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">{{$comment->author}}
+                <small>{{$comment->created_at}}</small>
+            </h4>
+            {{$comment->body}}
+        </div>
+    </div>
+
 
         @endforeach
 
     @endif
 
-    <!-- Comment with nested comments -->
-    <div class="media mb-4">
-        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-        <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio,
-            vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec
-            lacinia congue felis in faucibus.
 
-            <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img height="64" width="64" class="media-object" src="http://placehold.it/64x64" alt="">
+                </a>
                 <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
+                    <h4 class="media-heading">Naslov
+                        <small>Datum</small>
+                    </h4>
+                tijelo
 
-            <div class="media mt-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
 
-        </div>
-    </div>
+                <!-- Nested Comment -->
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Nested Start Bootstrap
+                                <small>August 25, 2014 at 9:30 PM</small>
+                            </h4>
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin
+                            commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                            condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                        </div>
+                    </div>
+                    <!-- End Nested Comment -->
+                </div>
+
+            </div>
 
 
 @endsection

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - Start Bootstrap Template</title>
+    <title>My-Blog</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
@@ -19,8 +19,7 @@
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 
 </head>
@@ -64,7 +63,6 @@
 
     <div class="row">
 
-
         <!-- Blog Post Content Column -->
         <div class="col-lg-8">
 
@@ -72,11 +70,6 @@
 
 
         </div>
-
-
-
-
-
 
 
         <!-- Blog Sidebar Widgets Column -->
@@ -131,7 +124,8 @@
             <!-- Side Widget Well -->
             <div class="well">
                 <h4>Side Widget Well</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus
+                    laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
             </div>
 
         </div>
@@ -156,12 +150,10 @@
 <!-- jQuery -->
 
 <script src="{{asset('js/libs.js')}}"></script>
-
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
 @yield('scripts')
-
-
-
 
 
 </body>
