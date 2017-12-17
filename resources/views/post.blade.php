@@ -104,7 +104,9 @@
 
   <!-- Nested Comment -->
   @if(count($comment->replies) > 0)
+
   @foreach($comment->replies as $reply)
+  
   @if($reply->is_active == 1)
 
   <div class="media">
