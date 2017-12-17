@@ -1,21 +1,21 @@
 @extends('layouts.blog-post')
 
-
-
 @section('content')
 
+<!-- Blog Post -->
 
-
-
-<h1 class="mt-4">{{$post->title}}</h1>
+<!-- Title -->
+<h1>{{$post->title}}</h1>
 
 <!-- Author -->
-<p class="lead">by <a href="#">{{$post->user->name}}</a></p>
+<p class="lead">
+  by <a href="#">{{$post->user->name}}</a>
+</p>
 
 <hr>
 
 <!-- Date/Time -->
-<p>Posted on {{$post->created_at->diffForHumans()}}</p>
+<p><span class="glyphicon glyphicon-time"></span> {{$post->created_at->diffForHumans()}}</p>
 
 <hr>
 
@@ -23,7 +23,6 @@
 <img class="img-responsive" src="{{$post->photo->file}}" alt="">
 
 <hr>
-
 @if(Session::has('comment_message'))
 
 {{session('comment_message')}}
@@ -35,70 +34,50 @@
 
 <hr>
 
+<!-- Blog Comments -->
+
 <!-- Comments Form -->
 @if(Auth::check())
+<div class="well">
 
-<div class="card my-4">
-  <h5 class="card-header">Leave a Comment:</h5>
-  <div class="card-body">
+  <h4>Leave a Comment:</h4>
+  {!! Form::open(['method'=>'POST', 'action'=> 'PostCommentController@store']) !!}
 
+  <input type="hidden" name="post_id" value="{{$post->id}}">
 
-    {!! Form::open(['method'=>'POST', 'action'=> 'PostCommentController@store']) !!}
+  <div class="form-group">
+    {!! Form::label('body', 'Comment text') !!}
+    {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>'3']) !!}
+</div>
 
+<div class="form-group">
+    {!! Form::submit('Leave a comment', ['class'=>'btn btn-primary']) !!}
+</div>
 
-    <input type="hidden" name="post_id" value="{{$post->id}}">
+{!! Form::close() !!}
 
-    <div class="form-group">
-      {!! Form::label('body', 'Comment text') !!}
-      {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>'3']) !!}
-    </div>
-
-    <div class="form-group">
-      {!! Form::submit('Leave a comment', ['class'=>'btn btn-primary']) !!}
-    </div>
-
-    {!! Form::close() !!}
-
-
-  </div>
 </div>
 @endif
 
+<hr>
+
+<!-- Posted Comments -->
 
 @if(count($comments) > 0)
 
 @foreach($comments as $comment)
 
+<!-- Comment -->
 <div class="media">
   <a class="pull-left" href="#">
     <img height="64" width="64" class="media-object" src="{{$comment->photo}}" alt="">
-  </a>
-  <div class="media-body">
+</a>
+<div class="media-body">
     <h4 class="media-heading">{{$comment->author}}
       <small>{{$comment->created_at->diffForHumans()}}</small>
-    </h4>
-    {{$comment->body}}
-
-    <hr>
-
-    @if(count($comment->replies) > 0)
-    @foreach($comment->replies as $reply)
-    @if($reply->is_active == 1)
-
-    <div id="nested-comment" class="media">
-      <a class="pull-left" href="#">
-        <img height="64" width="64" class="media-object" src="{{$reply->photo}}" alt="">
-      </a>
-
-      <div class="media-body">
-        <h4 class="media-heading">{{$reply->author}}
-          <small>{{$reply->created_at->diffForHumans()}}</small>
-        </h4>
-        {{$reply->body}}
-      </div>
-    </div>
-
-    <div class="comment-reply-container">
+  </h4>
+  {{$comment->body}}
+   <div class="comment-reply-container">
 
       <button class="toggle-reply btn btn-primary pull-right">Reply</button>
 
@@ -121,37 +100,57 @@
         {!! Form::close() !!}
       </div>
 
-    </div>
+</div>
 
+  <!-- Nested Comment -->
+  @if(count($comment->replies) > 0)
+  @foreach($comment->replies as $reply)
+  @if($reply->is_active == 1)
+
+  <div class="media">
+      <a class="pull-left" href="#">
+        <img height="64" width="64" class="media-object" src="{{$reply->photo}}" alt="">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{$reply->author}}
+          <small>{{$reply->created_at->diffForHumans()}}</small>
+      </h4>
+      {{$reply->body}}
   </div>
-  @else
-  <p class="lead">No comments</p>
+</div>
 
-  @endif
-  @endforeach
+@endif 
 
-  @endif
+@endforeach
+
+@endif
+
+<!-- End Nested Comment -->
+</div>
+</div>
+
+@endforeach
+
+@endif
+
+@section('scripts')
+
+<script>
+  $(".comment-reply-container .toggle-reply").click(function () {
+
+    $(this).next().slideToggle("slow");
+
+});
+</script>
+
+@endsection
+@endsection
 
 
 
 
-  @endforeach
-
-  @endif
 
 
 
-  @section('scripts')
-
-  <script>
-    $(".comment-reply-container .toggle-reply").click(function () {
-
-      $(this).next().slideToggle("slow");
-
-    });
-  </script>
-
-  @endsection
 
 
-  @endsection
