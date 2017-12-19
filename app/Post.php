@@ -3,21 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\SluggableInterface;
-use Cviebrock\EloquentSluggable\SluggableTrait;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
-class Post extends Model implements SluggableInterface
+
+class Post extends Model
 {
 
-    use SluggableTrait;
+    use Sluggable;
+    use SluggableScopeHelpers;
 
-    protected $sluggable = [
+    public function sluggable() 
+    {
 
-        'build_from' => 'title',
-        'save_to' => 'slug',
-        'on_update' => true,
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
 
-    ];
+    }
 
     protected $fillable = [
 
@@ -49,6 +54,13 @@ class Post extends Model implements SluggableInterface
     public function comments() {
 
         return $this->hasMany('App\Comment', 'post_id');
+
+    }
+
+
+    public function photoPlaceholder() {
+
+        return "http://placehold.it/900x600";
 
     }
 

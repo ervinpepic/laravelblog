@@ -31,7 +31,7 @@ class AdminCategoriesController extends Controller
     public function create()
     {
 
-
+        
 
     }
 
